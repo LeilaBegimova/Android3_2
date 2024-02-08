@@ -10,8 +10,8 @@ import com.example.android3_2.data.models.Character
 class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharapterViewHolder>() {
     private var charapterList = mutableListOf<Character>()
 
-    fun setCharapter(charapterList: List<Character>?) {
-        this.charapterList = charapterList?.toMutableList()!!
+    fun setCharapter(charapterList: List<Character>) {
+        this.charapterList = charapterList.toMutableList()
         notifyDataSetChanged()
     }
 
