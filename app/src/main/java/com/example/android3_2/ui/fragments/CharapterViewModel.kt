@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android3_2.data.models.Character
 import com.example.android3_2.data.repositories.CharacterRepositories
-import com.example.android3_2.ui.UiSate
+import com.example.android3_2.utils.UiSate
 
 
 class CharapterViewModel : ViewModel() {
@@ -21,7 +21,7 @@ class CharapterViewModel : ViewModel() {
     fun getCharapter() {
         android.os.Handler().postDelayed(
             {
-                val character = characterRepositories.getCharacter()
+                val character = characterRepositories.getCharacters()
                 if (character.size <= 10) {
                     _charapterLiveData.value =
                         UiSate(isLoading = false, success = character)

@@ -23,7 +23,7 @@ class AddCharacterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddCharacterBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -39,13 +39,18 @@ class AddCharacterFragment : Fragment() {
             progressBarTwo.isVisible = true
             Handler().postDelayed({
                 progressBarTwo.isVisible = false
-                viewModel.addCharapter(
-                    Character(
-                        image = R.drawable.img,
-                        etName.text.toString().trim()
+                val name: String = etName.text.toString().trim()
+
+                if (name.isNotEmpty()) {
+
+                    viewModel.addCharapter(
+                        Character(image =  R.drawable.img, name = etName.text.toString().trim()),
+
                     )
-                )
-                findNavController().navigateUp()
+                    findNavController().navigateUp()
+                }else {
+                    etName.error = "Input some thing "
+                }
 
             }, 3000)
         }

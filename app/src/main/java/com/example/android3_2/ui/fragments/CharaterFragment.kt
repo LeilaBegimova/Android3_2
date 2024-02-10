@@ -37,9 +37,8 @@ class CharaterFragment : Fragment() {
     }
 
     private fun initialize() = with(binding) {
-        val repository = CharacterRepositories()
+        viewModel.getCharapter()
         rvCharapter.adapter = characterAdapter
-        characterAdapter.setCharapter(repository.heroes)
     }
 
     private fun toGoSecondFragment() = with(binding) {
@@ -56,8 +55,8 @@ class CharaterFragment : Fragment() {
     }
 
     private fun subscribeToBoxes() {
-        viewModel.charapterLiveData.observe(viewLifecycleOwner) { UiState ->
-            UiState?.let {
+        viewModel.charapterLiveData.observe(viewLifecycleOwner) { uiState ->
+            uiState?.let {
                 binding.progressBar.isVisible = it.isLoading
 
                 if (it.success != null) {
